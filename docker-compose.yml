@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+
+  postgres:
+    image: "postgres:latest"
+    environment:
+      PGPASSWORD: '${PG_PASSWORD:-secret}'
+      POSTGRES_DB: '${PG_DATABASE:-actix-jwt}'
+      POSTGRES_USER: '${PG_USER:-postgres}'
+      POSTGRES_PASSWORD: '${PG_PASSWORD:-secret}'
+    ports:
+      - 5432:5432
+    volumes:
+      - 'actix-pgsql:/var/lib/postgresql/data'
+
+volumes:
+  actix-pgsql:
+    driver: local
